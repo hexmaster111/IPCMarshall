@@ -1,5 +1,7 @@
 ﻿using System.IO.MemoryMappedFiles;
 using System.Runtime.InteropServices;
+using System.Timers;
+using Timer = System.Timers.Timer;
 
 namespace IPCMarshall;
 
@@ -19,6 +21,10 @@ public class IPCMarshall<T> where T : struct
     }
 }
 
+/// <summary>
+///     An IPC (inner process communication) server that writes to a memory mapped file. Safe for multiple processes.
+/// </summary>
+/// <typeparam name="T">The DTO structure to send to the <see cref="IPCMemClient{T}"/></typeparam>
 public class IPCMemServer<T> : IPCMarshall<T> where T : struct
 {
     public bool Write(ref T @struct)
@@ -37,6 +43,60 @@ public class IPCMemServer<T> : IPCMarshall<T> where T : struct
 
 public class IPCMemClient<T> : IPCMarshall<T> where T : struct
 {
+
+    private Timer? _checkTimer;
+    private bool _enableEventRaising;
+    private T? _lastReadStructFromCheckTimer;
+    private TimeSpan _eventRaisingCheckInterval = TimeSpan.FromSeconds(1);
+    
+    
+    /// <summary>
+    ///     To enable this, set <see cref="EnableEventRaising" /> to true.
+    ///     Note: This event is raised on a different thread.
+    /// </summary>
+    public event Action<T>? OnMemoryChanged;
+    
+    public bool EnableEventRaising
+    {
+        get => _enableEventRaising;
+        set
+        {
+            _enableEventRaising = value;
+            if (!value) return;
+            _checkTimer ??= new Timer();
+            _checkTimer.Interval = _eventRaisingCheckInterval.TotalMilliseconds;
+            _checkTimer.Elapsed += CheckAndAlertChange;
+        }
+    }
+    
+    
+    private void CheckAndAlertChange(object? sender, ElapsedEventArgs args)
+    {
+        if (!Read(out var @struct)) return;
+        if (_lastReadStructFromCheckTimer == null)
+        {
+            _lastReadStructFromCheckTimer = @struct;
+            return;
+        }
+
+        if (_lastReadStructFromCheckTimer.Equals(@struct)) return;
+        _lastReadStructFromCheckTimer = @struct;
+        OnMemoryChanged?.Invoke(@struct);
+    }
+
+
+    public TimeSpan EventRaisingCheckInterval
+    {
+        get => _eventRaisingCheckInterval;
+        set
+        {
+            _eventRaisingCheckInterval = value;
+            if (_checkTimer == null) return; // Timer interval will be set when EnableEventRaising is set to true.
+            _checkTimer.Interval = _eventRaisingCheckInterval.TotalMilliseconds;
+        }
+    }
+
+
     public bool Read(out T @struct)
     {
         if (!_semaphore.WaitOne(_timeout))
