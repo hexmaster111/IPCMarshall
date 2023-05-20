@@ -5,10 +5,10 @@ namespace IPCDebuggerContract;
 public struct MyStruct
 {
     public ValueString StringOne;
-    public MyStruct(string one)
+    public int Counter;
+    public MyStruct(string one, int counter)
     {
-        if (one == null) throw new ArgumentNullException(nameof(one));
-        if (one.Length > ValueString.MaxLen) throw new ArgumentException("String too long", nameof(one));
         StringOne = new ValueString(one);
+        Counter = counter;
     }
 }

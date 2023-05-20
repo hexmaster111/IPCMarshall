@@ -1,22 +1,20 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using System.Runtime.InteropServices;
 using IPCDebuggerContract;
 using IPCMarshall;
-using Microsoft.Extensions.Primitives;
 
-var memManager = new IPCMemServer<MyStruct>(nameof(MyStruct), new TimeSpan(0, 0, 0, 0, 50));
+var memManager = new IPCMemServer<MyStruct>(nameof(MyStruct), TimeSpan.FromMilliseconds(50));
 
-Console.WriteLine("Hello world");
+Console.WriteLine("Hub Starting");
 
 int i = 0;
 
 while (true)
 {
-    Thread.Sleep(750);
-    var a = new MyStruct($"!**{i++}**!");
+    Thread.Sleep(25);
+    var a = new MyStruct($"Ima string!", i++);
     var written = memManager.Write(ref a);
-    Console.WriteLine($"Written: {written} - {a.StringOne}");
+    Console.WriteLine($"Written: {written} - {a.Counter} - {a.StringOne}");
 }
 
 

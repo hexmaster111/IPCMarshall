@@ -1,15 +1,24 @@
 ﻿using IPCDebuggerContract;
 using IPCMarshall;
 
-var memClient = new IPCMemClient<MyStruct>(nameof(MyStruct), new TimeSpan(0, 0, 0, 0, 50));
+var memClient = new IPCMemClient<MyStruct>(nameof(MyStruct), TimeSpan.FromMilliseconds(50));
+memClient.EnableEventRaising = true;
 
-Console.WriteLine("Client Started!");
-
-while (true)
+int lastCount = 0;
+int missCount = 0;
+memClient.OnMemoryChanged += (myStruct) =>
 {
-    Thread.Sleep(1000);
-    var read = memClient.Read(out var a);
-    Console.WriteLine($"Read: {read} - {a.StringOne}");
-}
+    Console.WriteLine($"Event: {myStruct.Counter} - {myStruct.StringOne}");
+    if (myStruct.Counter != lastCount + 1)
+    {
+        Console.WriteLine($"Counter skipped from {lastCount} to {myStruct.Counter}");
+        missCount++;
+    }
+    lastCount = myStruct.Counter;
+    
+};
 
+Console.WriteLine("Client Started! - press any key to exit");
+Console.ReadKey();
+Console.WriteLine($"Missed {missCount} events");
 
