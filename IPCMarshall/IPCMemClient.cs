@@ -15,7 +15,7 @@ public class IPCMemClient<T> : IPCMarshall<T> where T : struct
 
     /// <summary>
     ///     To enable this, set <see cref="EnableEventRaising" /> to true.
-    ///     Note: This event is raised on a different thread.
+    ///     Rapid changes may be missed, but the last change will be raised.
     /// </summary>
     public event Action<T>? OnMemoryChanged;
 
