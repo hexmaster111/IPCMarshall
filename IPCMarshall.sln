@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPCMarshall", "IPCMarshall\IPCMarshall.csproj", "{D5655FB7-FDB9-4AA0-AB83-55F0853DA144}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPCDebuggerHub", "IPCDebuggerHub\IPCDebuggerHub.csproj", "{04370490-D322-4D01-B1DC-27FB471C23F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPCDebuggerClient", "IPCDebuggerClient\IPCDebuggerClient.csproj", "{60A757D9-558D-42F8-A876-FD4F6642DC0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPCDebuggerContract", "IPCDebuggerContract\IPCDebuggerContract.csproj", "{568B2966-0184-4236-A905-B0C2E9ACDD88}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D5655FB7-FDB9-4AA0-AB83-55F0853DA144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5655FB7-FDB9-4AA0-AB83-55F0853DA144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5655FB7-FDB9-4AA0-AB83-55F0853DA144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5655FB7-FDB9-4AA0-AB83-55F0853DA144}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04370490-D322-4D01-B1DC-27FB471C23F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04370490-D322-4D01-B1DC-27FB471C23F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04370490-D322-4D01-B1DC-27FB471C23F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04370490-D322-4D01-B1DC-27FB471C23F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60A757D9-558D-42F8-A876-FD4F6642DC0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60A757D9-558D-42F8-A876-FD4F6642DC0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60A757D9-558D-42F8-A876-FD4F6642DC0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60A757D9-558D-42F8-A876-FD4F6642DC0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{568B2966-0184-4236-A905-B0C2E9ACDD88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{568B2966-0184-4236-A905-B0C2E9ACDD88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{568B2966-0184-4236-A905-B0C2E9ACDD88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{568B2966-0184-4236-A905-B0C2E9ACDD88}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
