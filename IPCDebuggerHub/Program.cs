@@ -11,10 +11,8 @@ int i = 0;
 
 while (true)
 {
-    Thread.Sleep(25);
+    Thread.Sleep(500);
     var a = new MyStruct($"Ima string!", i++);
     var written = memManager.Write(ref a);
     Console.WriteLine($"Written: {written} - {a.Counter} - {a.StringOne}");
 }
-
-

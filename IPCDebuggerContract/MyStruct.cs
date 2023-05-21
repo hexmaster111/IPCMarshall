@@ -1,4 +1,5 @@
 ﻿using IPCMarshall;
+using IPCMarshall.ValueTypes;
 
 namespace IPCDebuggerContract;
 
@@ -12,3 +13,4 @@ public struct MyStruct
         Counter = counter;
     }
 }
+
