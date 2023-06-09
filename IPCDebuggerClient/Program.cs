@@ -2,9 +2,10 @@
 using IPCMarshall;
 
 
-var memClient = new IPCMemClient<MyStruct>(nameof(MyStruct), TimeSpan.FromMilliseconds(50));
-
-memClient.EnableEventRaising = true;
+var memClient = new IPCMemClient<MyStruct>($"x{nameof(MyStruct)}x", TimeSpan.FromMilliseconds(50))
+{
+    EnableEventRaising = true
+};
 
 
 int lastCount = 0;
