@@ -6,12 +6,16 @@ public class ValActionSubscriber<TVt> : IPCMemClient<InvocationDataStruct<TVt>> 
 
     public ValActionSubscriber(string name) : base(name, TimeSpan.FromMilliseconds(5))
     {
-        base.MemoryChanged += OnMemoryChanged;
-        base.EnableEventRaising = true;
+        MemoryChanged += OnMemoryChanged;
+        EnableEventRaising = true;
     }
 
-    private void OnMemoryChanged(InvocationDataStruct<TVt> obj)
+    private void OnMemoryChanged(InvocationDataStruct<TVt> obj) => Invoked?.Invoke(obj.ValueTransmitted);
+}
+
+public class ValActionSubscriber : ValActionSubscriber<EmptyStruct>
+{
+    public ValActionSubscriber(string name) : base(name)
     {
-        Invoked?.Invoke(obj.ValueTransmitted);
     }
 }

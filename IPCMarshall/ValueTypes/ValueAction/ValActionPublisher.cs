@@ -7,11 +7,15 @@ public class ValActionPublisher<TVt> : IPCMemServer<InvocationDataStruct<TVt>> w
     public void Invoke(TVt value)
     {
         _lastData = _lastData.Next(value);
-        base.Write(ref _lastData);
+        Write(ref _lastData);
     }
 
-    public ValActionPublisher(string name) : base(name, TimeSpan.FromMilliseconds(5))
+    public ValActionPublisher(string name) : base(name, TimeSpan.FromMilliseconds(5)) => Write(ref _lastData);
+}
+
+public class ValActionPublisher : ValActionPublisher<EmptyStruct>
+{
+    public ValActionPublisher(string name) : base(name)
     {
-        base.Write(ref _lastData);
     }
 }
