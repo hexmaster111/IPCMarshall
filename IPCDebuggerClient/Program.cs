@@ -1,6 +1,6 @@
 ﻿using IPCDebuggerContract;
 using IPCMarshall;
-using IPCMarshall.ValueTypes.IPAction;
+using IPCMarshall.ValueTypes.ValueAction;
 
 var memClient = new IPCMemClient<MySharedDataStruct>($"x{nameof(MySharedDataStruct)}x", TimeSpan.FromMilliseconds(50))
 {

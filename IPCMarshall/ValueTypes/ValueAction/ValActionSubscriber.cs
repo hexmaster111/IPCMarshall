@@ -1,4 +1,4 @@
-﻿namespace IPCMarshall.ValueTypes.IPAction;
+﻿namespace IPCMarshall.ValueTypes.ValueAction;
 
 public class ValActionSubscriber<TVt> : IPCMemClient<InvocationDataStruct<TVt>> where TVt : struct
 {
