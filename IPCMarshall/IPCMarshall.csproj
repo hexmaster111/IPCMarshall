@@ -7,8 +7,4 @@
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
-    <ItemGroup>
-      <Folder Include="ValueTypes\ValueAction" />
-    </ItemGroup>
-
 </Project>
