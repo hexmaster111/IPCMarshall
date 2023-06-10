@@ -11,6 +11,7 @@
     <ItemGroup>
       <ProjectReference Include="..\IPCDebuggerContract\IPCDebuggerContract.csproj" />
       <ProjectReference Include="..\IPCMarshall\IPCMarshall.csproj" />
+      <ProjectReference Include="..\ValueAction\ValueAction.csproj" />
     </ItemGroup>
 
     <ItemGroup>
