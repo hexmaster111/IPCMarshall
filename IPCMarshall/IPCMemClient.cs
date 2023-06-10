@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Text;
-using System.Timers;
+﻿using System.Timers;
 using Timer = System.Timers.Timer;
 
 namespace IPCMarshall;
@@ -17,7 +15,7 @@ public class IPCMemClient<T> : IPCMarshall<T> where T : struct
     ///     To enable this, set <see cref="EnableEventRaising" /> to true.
     ///     Rapid changes may be missed, but the last change will be raised.
     /// </summary>
-    public event Action<T>? OnMemoryChanged;
+    public event Action<T>? MemoryChanged;
 
     public bool EnableEventRaising
     {
@@ -40,7 +38,7 @@ public class IPCMemClient<T> : IPCMarshall<T> where T : struct
         if (!Read(out var @struct, out var indicator)) return;
         if (indicator == _lastMemMapNoticeBitField) return;
         _lastMemMapNoticeBitField = indicator;
-        OnMemoryChanged?.Invoke(@struct);
+        MemoryChanged?.Invoke(@struct);
     }
 
 
